@@ -4,6 +4,7 @@ podfile: ios/Podfile
 node_js: 10.15.3
 
 install:
+  - bundle install
   - npm install
   
 script:
