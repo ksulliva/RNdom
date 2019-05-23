@@ -111,7 +111,7 @@ platform :ios do
         gym(
             scheme: scheme,
             configuration: configuration,
-            project: project_path,
+            workspace: "ios/RNdom.xcworkspace",
             clean: true,
             include_bitcode: false,
             include_symbols: true,
