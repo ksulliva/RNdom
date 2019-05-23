@@ -52,7 +52,7 @@ platform :ios do
     )
 
     xcarchive(
-        archive_path: "build/RNdom.xcarchive",
+        archive_path: "build/RNdom.xcarchive.zip",
         workspace: "ios/RNdom.xcworkspace",
         scheme: scheme,
         xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
