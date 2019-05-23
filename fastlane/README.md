@@ -16,11 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios nerdery_qa
+### ios ios_archive
 ```
-fastlane ios nerdery_qa
+fastlane ios ios_archive
 ```
-Prepare build for Nerdery QA
+Create an .xcarchive
 
 ----
 

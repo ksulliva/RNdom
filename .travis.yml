@@ -7,4 +7,4 @@ podfile: ios/Podfile
 # Continuous Integration Script
 #   fastlane scan - runs the application tests
 script:
-- ./ios/fastlane nerdery_qa
+- fastlane ios_archive

@@ -17,8 +17,8 @@ default_platform :ios
 
 platform :ios do
 
-  desc "Prepare build for Nerdery QA"
-  lane :nerdery_qa do |options|
+  desc "Create an .xcarchive"
+  lane :ios_archive do |options|
 
     # If the custom command line parameter "resetGitRepo:false" is used, don't reset the repo at the end of this lane
     if options[:resetGitRepo] == false
