@@ -1,0 +1,198 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.73.0"
+
+default_platform :ios
+
+platform :ios do
+
+  desc "Prepare build for Nerdery QA"
+  lane :nerdery_qa do |options|
+
+    # If the custom command line parameter "resetGitRepo:false" is used, don't reset the repo at the end of this lane
+    if options[:resetGitRepo] == false
+      puts "-----------------------------------------"
+      puts "--- Note: nerdery_qa parameter option ---"
+      puts "-----------------------------------------"
+      puts "You opted to not reset the git repo after the nerdery_qa lane finishes."
+      puts "This will leave uncommitted changes to your xcode project after this lane finishes."
+      puts "To restore the git status to a clean state, don't execute this lane with the resetGitRepo command line parameter (or set it to true)."
+    else
+      puts "-----------------------------------------"
+      puts "--- Note: nerdery_qa parameter option ---"
+      puts "-----------------------------------------"
+      puts "The git status will be reset after the nerdery_qa lane finishes."
+      puts "To prevent resetting the git status after the lane executes, use the command line parameter resetGitRepo:false when executing this lane"
+
+      ensure_git_status_clean
+    end
+
+    # Fetch project specific values
+    bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+    apple_id = ENV['apple_id']
+    team_id = ENV['team_id']
+    app_name = ENV['app_name']
+    scheme = ENV['scheme']
+    configuration = ENV['configuration']
+    info_plist_path = ENV['info_plist_path']
+    project_path = ENV['project_path']
+    target_name = ENV['target_name']
+
+    # Print out the loaded environment variables
+    puts "----------------------------------------------"
+    puts "--- Step: Validating environment variables ---"
+    puts "----------------------------------------------"
+    puts "apple_id: #{apple_id}"
+    puts "app_identifier: #{bundle_id}"
+    puts "team_id: #{team_id}"
+    puts "app_name: #{app_name}"
+    puts "scheme: #{scheme}"
+    puts "configuration: #{configuration}"
+    puts "info_plist_path: #{info_plist_path}"
+    puts "project_path: #{project_path}"
+    puts "target_name: #{target_name}"
+
+
+
+
+
+
+
+    # xcodebuild -project PlayerHealthToolKit.xcodeproj -scheme PlayerHealthToolKit -configuration Release-Staging clean archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+    disable_automatic_code_signing(
+        path: project_path,
+        use_automatic_signing: false,
+    )
+
+    gym(
+        scheme: scheme,
+        configuration: configuration,
+        clean: true,
+        include_bitcode: false,
+        include_symbols: true,
+        xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO",
+        output_directory: "build"
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # # Update the app bundle to the enterprise certificate
+    # update_app_identifier(
+    #     xcodeproj: project_path,
+    #     app_identifier: bundle_id,
+    #     plist_path: info_plist_path
+    # )
+
+    # disable_automatic_code_signing(
+    #     path: project_path,
+    #     team_id: team_id,
+    #     use_automatic_signing: false,
+    #     code_sign_identity: "iPhone Distribution"
+    # )
+
+    # # Check for any custom defined services to provide the produce action.
+    # # This fastfile provides an empty method that should be overriden by the project's fastfile
+    # # for specifying any non-default services, e.g. push notifications.
+    # enable_services = get_enable_services()
+
+    # if enable_services && enable_services.is_a?(Hash) == false
+    #   UI.user_error!("The value returned by get_enable_services() is not a dictionary. See the enable_services parameter in the fastlane docs https://docs.fastlane.tools/actions/produce/")
+    # end
+
+    # # Create a new App Identifier in the Nerdery's enterprise apple dev account if needed
+    # produce(
+    #     username: apple_id,
+    #     app_identifier: bundle_id,
+    #     app_name: app_name,
+    #     skip_itc: true,
+    #     enable_services: enable_services
+    # )
+
+    # match(
+    #     username: apple_id,
+    #     git_url: "ssh://git@git.nerdery.com:7999/bravo/ios.enterprise.certificates.git",
+    #     team_id: team_id,
+    #     app_identifier: [bundle_id],
+    #     type: "enterprise",
+    #     force_for_new_devices: true
+    # )
+
+    # # Download the certificates (needed by the fastlane action 'update_project_provisioning')
+    # sigh(
+    #     username: apple_id,
+    #     app_identifier: bundle_id,
+    #     team_id: team_id,
+    #     provisioning_name: "match InHouse #{bundle_id}"
+    # )
+
+    # # Update the project team to the Nerdery enterprise account's team
+    # update_project_team(
+    #     path: project_path,
+    #     teamid: team_id
+    # )
+
+    # # Update the provisioning profile to use the Nerdery enterprise profile
+    # update_project_provisioning(
+    #     xcodeproj: project_path,
+    #     profile: "InHouse_#{bundle_id}.mobileprovision",
+    #     target_filter: target_name,
+    #     build_configuration: configuration
+    # )
+
+    # xcargs = "-allowProvisioningUpdates"
+    # if !xcode_version.nil? && xcode_version.match(/(^|\s+)8/)
+    #   xcargs = ""
+    # end
+
+    # gym(
+    #     scheme: scheme,
+    #     configuration: configuration,
+    #     clean: true,
+    #     include_bitcode: false,
+    #     include_symbols: true,
+    #     xcargs: xcargs,
+    #     export_method: "enterprise",
+    #     export_team_id: team_id,
+    #     export_xcargs: xcargs,
+    #     output_directory: "build"
+    # )
+
+    # If the custom command line parameter "resetGitRepo:false" is used, don't reset the repo at the end of this lane
+    if options[:resetGitRepo] == false
+      # Do nothing
+    else
+      reset_git_repo
+    end
+
+  end
+
+end
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer

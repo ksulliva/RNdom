@@ -151,7 +151,6 @@
 				1475A66FD5118CAFBCB96BBA /* Pods-RNdomTests.debug.xcconfig */,
 				2A69AE6C9B8DE395876F7370 /* Pods-RNdomTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -217,6 +216,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -428,7 +428,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ksulliva.petfinder-rn";
 				PRODUCT_NAME = RNdom;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -447,7 +447,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ksulliva.petfinder-rn";
 				PRODUCT_NAME = RNdom;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
