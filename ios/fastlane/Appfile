@@ -1,6 +1,8 @@
 for_lane :nerdery_qa do
 	# UPDATE THESE VALUES FOR YOUR PROJECT
 	app_identifier 			"com.ksulliva.petfinder-rn" # The bundle identifier of your app
+	ENV["apple_id"]			= "ksulliv6@gmail.com"
+	ENV["team_id"]			= "45688JGH49"
 	ENV["app_name"]			= "RNdom" # Used for the Apple Developer Account App ID registration
 	ENV["scheme"] 			= "RNdom" # The xcode scheme to build
 	ENV["configuration"] 	= "Release" # The project configuration to build, e.g. Release
