@@ -114,9 +114,8 @@ platform :ios do
             clean: true,
             include_bitcode: false,
             include_symbols: true,
-            export_method: "enterprise",
+            export_method: "development",
             export_team_id: team_id,
-            export_xcargs: xcargs,
             output_directory: "build"
         )
 
