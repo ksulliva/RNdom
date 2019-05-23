@@ -3,16 +3,19 @@ language: swift
 podfile: ios/Podfile
 node_js: 10.15.3
 install:
-- bundle install
-- npm install
+  - bundle install
+  - npm install
 script:
-- fastlane archive_for_client
+  - fastlane archive_for_client
+
+before_deploy:
+  - zip -r RNdom.xcarchive.zip build/
 
 deploy:
   provider: releases
   api_key:
     secure: FVKqg3Qo7Yhl1Ei/XaVBxBt0vgrDWKXcvbIV7E5vhR3TSVejcopNmjnEViD64M8qIcGBel4Oi8J/uAmPmtwDwnYoCYvZpwca3K9Ov6oJh/yofUhHaMR+mr1ems9IF4La+v8sevy8CpW89iM4T/KMCJq1TzQSeOJjr9pcXIZNEZrVkwzxECmkmltLaGX5YizTJmdHhT9PmNPpTViaDgyAp39bbYM/eHXDT+1UZygqj2am9GAKI9UVUaEuHAHD39fsHVUc/NWsOFTm+Rv9Z/fy9SJX+BqSVRFmQcq6sHSOZe8bcTmzan4rLLh9Xwl0qJXzNXtiOA25I4qzXYYCrhq9OeK3Y3nSpgmhcNAyO8/4kqKGAPqIZZy7rpN7bbMVuRc12n1VHEX/5YY5JdICfvT7tTfSJegRc1SQZc/+FbylqJQ4gztniw1e0o1TQAQgVnfeuj8JEHwPNK1Fsod33KfpfkQFZZbXMJzQ0qj+DTGykEfSlGg9RY5deR4OwEscCVnMRGx3U1s83RERLHv/3X5LdTcba1Q9XqxHKIjaihu8UPg3apxDkD9+HZ4BFyfH+RyB3AArh8ebkA0VutAiU5f5L8+r2dAH85w6s7JaACYK1Jwo0rQicJBNBY420pmyCxAmiPl69kWHSKSfpwcedSFQsb3iVku8TYbFv3BKtDwdseA=
-  file: "build/RNdom.xcarchive"
+  file: "build/RNdom.xcarchive.zip"
   skip_cleanup: true
   on:
     tags: true
