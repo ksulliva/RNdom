@@ -114,7 +114,6 @@ platform :ios do
             clean: true,
             include_bitcode: false,
             include_symbols: true,
-            xcargs: xcargs,
             export_method: "enterprise",
             export_team_id: team_id,
             export_xcargs: xcargs,
