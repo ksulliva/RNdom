@@ -71,6 +71,8 @@ platform :ios do
 
     # xcodebuild -project PlayerHealthToolKit.xcodeproj -scheme PlayerHealthToolKit -configuration Release-Staging clean archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
+    xcversion(version: "10.2")
+
     disable_automatic_code_signing(
         path: project_path,
         use_automatic_signing: false,
