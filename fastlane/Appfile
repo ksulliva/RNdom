@@ -1,4 +1,4 @@
-for_lane :nerdery_qa do
+for_lane :ios_archive do
 	# UPDATE THESE VALUES FOR YOUR PROJECT
 	app_identifier 			"com.ksulliva.petfinder-rn" # The bundle identifier of your app
 	ENV["apple_id"]			= "ksulliv6@gmail.com"
