@@ -111,6 +111,7 @@ platform :ios do
         gym(
             scheme: scheme,
             configuration: configuration,
+            path: project_path,
             clean: true,
             include_bitcode: false,
             include_symbols: true,
