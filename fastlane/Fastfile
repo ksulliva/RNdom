@@ -18,7 +18,7 @@ default_platform :ios
 platform :ios do
 
   desc "Create an .xcarchive"
-  lane :ios_archive do |options|
+  lane :archive_for_client do |options|
 
     # Fetch project specific values
     bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
@@ -45,32 +45,11 @@ platform :ios do
     puts "project_path: #{project_path}"
     puts "target_name: #{target_name}"
 
-
-
-
-
-
-
-    # xcodebuild -project PlayerHealthToolKit.xcodeproj -scheme PlayerHealthToolKit -configuration Release-Staging clean archive CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
-
-    # xcversion(version: "10.2")
-
     disable_automatic_code_signing(
         path: project_path,
         team_id: team_id,
         use_automatic_signing: false,
     )
-
-    # gym(
-    #     scheme: scheme,
-    #     configuration: configuration,
-    #     clean: true,
-    #     include_bitcode: false,
-    #     include_symbols: true,
-    #     xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
-    #     output_directory: "build",
-    #     skip_package_ipa: true
-    # )
 
     xcarchive(
         archive_path: "build/RNdom.xcarchive",
@@ -79,17 +58,35 @@ platform :ios do
         xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
     )
 
+  end
 
+  desc "Build for Testflight"
+  lane :build_for_testflight do |options|
 
+    # Fetch project specific values
+    bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+    apple_id = ENV['apple_id']
+    team_id = ENV['team_id']
+    app_name = ENV['app_name']
+    scheme = ENV['scheme']
+    configuration = ENV['configuration']
+    info_plist_path = ENV['info_plist_path']
+    project_path = ENV['project_path']
+    target_name = ENV['target_name']
 
-
-
-
-
-
-
-
-
+    # Print out the loaded environment variables
+    puts "----------------------------------------------"
+    puts "--- Step: Validating environment variables ---"
+    puts "----------------------------------------------"
+    puts "apple_id: #{apple_id}"
+    puts "app_identifier: #{bundle_id}"
+    puts "team_id: #{team_id}"
+    puts "app_name: #{app_name}"
+    puts "scheme: #{scheme}"
+    puts "configuration: #{configuration}"
+    puts "info_plist_path: #{info_plist_path}"
+    puts "project_path: #{project_path}"
+    puts "target_name: #{target_name}"
 
 
     # # Update the app bundle to the enterprise certificate

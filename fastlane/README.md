@@ -16,11 +16,16 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios ios_archive
+### ios archive_for_client
 ```
-fastlane ios ios_archive
+fastlane ios archive_for_client
 ```
 Create an .xcarchive
+### ios build_for_testflight
+```
+fastlane ios build_for_testflight
+```
+Build for Testflight
 
 ----
 
