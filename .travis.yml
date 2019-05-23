@@ -1,10 +1,12 @@
-# Configuration
-language: objective-c
+# OS Configuration
+language: swift
 osx_image: xcode10.2
-xcode_sdk: iphonesimulator12.1
+
+# Cocoapods
 podfile: ios/Podfile
 
-# Continuous Integration Script
-#   fastlane scan - runs the application tests
+cache:
+  - bundler
+
 script:
-- fastlane ios_archive
+  - fastlane ios_archive
