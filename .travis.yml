@@ -1,12 +1,10 @@
-# OS Configuration
-language: swift
-osx_image: xcode10.2
+- stage: Archive iOS
+  osx_image: xcode10.2
+  language: swift
+  podfile: ios/Podfile
+  node_js: 10.15.3
 
-# Cocoapods
-podfile: ios/Podfile
+  cache: npm
 
-cache:
-  - bundler
-
-script:
-  - fastlane ios_archive
+  script:
+    - fastlane ios_archive
