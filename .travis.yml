@@ -1,10 +1,12 @@
-- stage: Archive iOS
-  osx_image: xcode10.2
-  language: swift
-  podfile: ios/Podfile
-  node_js: 10.15.3
+jobs:
+  include:
+    - stage: Archive iOS
+      osx_image: xcode10.2
+      language: swift
+      podfile: ios/Podfile
+      node_js: 10.15.3
 
-  cache: npm
+      cache: npm
 
-  script:
-    - fastlane ios_archive
+      script:
+        - fastlane ios_archive
