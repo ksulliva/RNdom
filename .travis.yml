@@ -2,16 +2,16 @@ osx_image: xcode10.2
 language: swift
 podfile: ios/Podfile
 node_js: 10.15.3
+before_install:
+  - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
 install:
   - bundle install
   - npm install
 script:
   - fastlane build_for_testflight
-  # - fastlane archive_for_client
 
 # before_deploy:
 #   - zip -r RNdom.xcarchive.zip build/
-
 # deploy:
 #   provider: releases
 #   api_key:
@@ -21,3 +21,8 @@ script:
 #   on:
 #     tags: true
 #     repo: ksulliva/RNdom
+
+env:
+  global:
+  - secure: kYDAHqXF9jaKwM1ER89pGnLtLZtuFFksxFPoik+KAKpCaksk4RvTwxN4BAeC5qk7KuPpStmTtZsyssBn5vWx7/E9OFo2cVlVC5FM1kdHk9r84kfE1O4FhlzNCSXBFvvaBtHg8mDKxrY4KuypORD+4tktH24lI/Uj7ZdB1es97dpJ4Ib59cz3BRG2g2MnePdf7w9FlTDSRntoyiAzYdIn4+/tErqprvyvO6weq34RBmTjR/NHvEMqWKmB0abJ4bBBi53CSdku74qtQ6ApdzM8OHW7CeRTIDIc4umilzvMDvwmMLtoJbc4R55T7p3ggusnDeZBty8YrK0IYAm0bEZk2AUElO3XhkHYXu8SdwqyKu0E4AoqfN8rLdf71jhnbUgFYGXGRKP39TSSyle0R7V0ho/SljH/+1yqsFH+G68b/fkiOBg9gXsDhcc94qBFXgbJn9+Ue8QcHVj1iqETQ6cpcYHE6c6qhKokedM/AI3sTMWNnXxF/RwnSFYUoQ1IsIbNQea+KDKIK0NpozfOLSB+8dgez4N0MRzur1Y/9OKJStMskbOoD54k4QzaSE6zy9YjtWwf6JGWE8ROzgsIP6WdHD7WcI9uaDlRBT4fbficSZoT2jGPq4zmVjWy+dYRdFPKxBvAuM4W/dc6G4zJm5aLcDHikQHmrVo5ZOcZ2HfCfPM=
+  - secure: po0DFFGkSiO6dfiWMgn/JDjuP2jC+/4Em3PQT11k4++SmZGpjrVLdDq0hdP21e6agPbUYIc+5I/91iaNuyBRV3ElRrrsIaKf8yl2RdIRrOfRsLjInUAvwQgDs5Cf4zBcdgGpJlFuzbCFOsHVDCtAwR0+rQOJs7fg2zGbmE0N2l0qNr870aSVD2Yo7aLII/zDAS4sl2q3Oxi1aIlXPGhCyH0jiyaZTGTBEC3ftsUQ+Dc/ecZlN2a3Doh0xtXhP752QIRx8SBn1k+ZA6ZaWc7lu8Z9/Pj6mA6kJLMONxvblXGmpqWcUjiykd8vjjsd3XcixMeZ5AzgyNSyC8nUU00WZsM9AOi3PIeCDpS0CcLFHJnmTFEW24iHk5nlUX7IO08pIXDS3XMkq4DoFrVYsjiviS2A4/h92akF0lyq+zOyB+2neBK0AgZtj5tfX+FCZ2bsRt99VSqvP78ZWmOqbIgU7SDl+r9wFYB0/l8rw0oCVRXpSArdX1A/YMtxV68d7+PHvA8UmjxedtZkSG9brS1U+hvXzw9MLBXE2fabbr/q8oZ6nPHUUPrI0kz2JuRSFUUKcC73LF50Z9aS9LJ+VdQQAw3fp+RfHRbiWqsInXHwylTPCGa8x/cFWnt2+VEeMXsEKDmbVTD77QTNRXD7PajjJoBLOyIH3e2wK7uqlgvIB0M=
