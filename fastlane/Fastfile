@@ -20,24 +20,6 @@ platform :ios do
   desc "Create an .xcarchive"
   lane :ios_archive do |options|
 
-    # If the custom command line parameter "resetGitRepo:false" is used, don't reset the repo at the end of this lane
-    if options[:resetGitRepo] == false
-      puts "-----------------------------------------"
-      puts "--- Note: nerdery_qa parameter option ---"
-      puts "-----------------------------------------"
-      puts "You opted to not reset the git repo after the nerdery_qa lane finishes."
-      puts "This will leave uncommitted changes to your xcode project after this lane finishes."
-      puts "To restore the git status to a clean state, don't execute this lane with the resetGitRepo command line parameter (or set it to true)."
-    else
-      puts "-----------------------------------------"
-      puts "--- Note: nerdery_qa parameter option ---"
-      puts "-----------------------------------------"
-      puts "The git status will be reset after the nerdery_qa lane finishes."
-      puts "To prevent resetting the git status after the lane executes, use the command line parameter resetGitRepo:false when executing this lane"
-
-      ensure_git_status_clean
-    end
-
     # Fetch project specific values
     bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
     apple_id = ENV['apple_id']
@@ -190,13 +172,6 @@ platform :ios do
     #     export_xcargs: xcargs,
     #     output_directory: "build"
     # )
-
-    # If the custom command line parameter "resetGitRepo:false" is used, don't reset the repo at the end of this lane
-    if options[:resetGitRepo] == false
-      # Do nothing
-    else
-      reset_git_repo
-    end
 
   end
 
