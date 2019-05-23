@@ -86,7 +86,8 @@ platform :ios do
         include_bitcode: false,
         include_symbols: true,
         xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
-        output_directory: "build"
+        output_directory: "build",
+        skip_package_ipa: true
     )
 
 
