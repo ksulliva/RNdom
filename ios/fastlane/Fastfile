@@ -79,15 +79,21 @@ platform :ios do
         use_automatic_signing: false,
     )
 
-    gym(
+    # gym(
+    #     scheme: scheme,
+    #     configuration: configuration,
+    #     clean: true,
+    #     include_bitcode: false,
+    #     include_symbols: true,
+    #     xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
+    #     output_directory: "build",
+    #     skip_package_ipa: true
+    # )
+
+    xcarchive(
+        archive_path: "build/RNdom.xcarchive"
         scheme: scheme,
-        configuration: configuration,
-        clean: true,
-        include_bitcode: false,
-        include_symbols: true,
         xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
-        output_directory: "build",
-        skip_package_ipa: true
     )
 
 
