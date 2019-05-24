@@ -21,12 +21,12 @@ platform :ios do
     lane :archive_for_client do |options|
 
         bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-        team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
-        scheme = CredentialsManager::AppfileConfig.try_fetch_value(:scheme)
-        configuration = CredentialsManager::AppfileConfig.try_fetch_value(:configuration)
-        project_path = CredentialsManager::AppfileConfig.try_fetch_value(:project_path)
-        workspace_path = CredentialsManager::AppfileConfig.try_fetch_value(:workspace_path)
-        target_name = CredentialsManager::AppfileConfig.try_fetch_value(:target_name)
+        team_id = ENV['team_id']
+        scheme = ENV['scheme']
+        configuration = ENV['configuration']
+        project_path = ENV['project_path']
+        workspace_path = ENV['workspace_path']
+        target_name = ENV['target_name']
 
         # Print out the loaded environment variables
         puts "----------------------------------------------"
@@ -39,7 +39,7 @@ platform :ios do
         puts "project_path: #{project_path}"
         puts "workspace_path: #{workspace_path}"
         puts "target_name: #{target_name}"
-        
+
         disable_automatic_code_signing(
             path: project_path,
             team_id: team_id,
@@ -61,12 +61,12 @@ platform :ios do
         setup_travis
 
         bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-        team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
-        scheme = CredentialsManager::AppfileConfig.try_fetch_value(:scheme)
-        configuration = CredentialsManager::AppfileConfig.try_fetch_value(:configuration)
-        project_path = CredentialsManager::AppfileConfig.try_fetch_value(:project_path)
-        workspace_path = CredentialsManager::AppfileConfig.try_fetch_value(:workspace_path)
-        target_name = CredentialsManager::AppfileConfig.try_fetch_value(:target_name)
+        team_id = ENV['team_id']
+        scheme = ENV['scheme']
+        configuration = ENV['configuration']
+        project_path = ENV['project_path']
+        workspace_path = ENV['workspace_path']
+        target_name = ENV['target_name']
 
         # Print out the loaded environment variables
         puts "----------------------------------------------"
