@@ -28,18 +28,6 @@ platform :ios do
         workspace_path = ENV['workspace_path']
         target_name = ENV['target_name']
 
-        # Print out the loaded environment variables
-        puts "----------------------------------------------"
-        puts "--- Step: Validating Appfile variables ---"
-        puts "----------------------------------------------"
-        puts "app_identifier: #{bundle_id}"
-        puts "team_id: #{team_id}"
-        puts "scheme: #{scheme}"
-        puts "configuration: #{configuration}"
-        puts "project_path: #{project_path}"
-        puts "workspace_path: #{workspace_path}"
-        puts "target_name: #{target_name}"
-
         disable_automatic_code_signing(
             path: project_path,
             team_id: team_id,
@@ -67,18 +55,6 @@ platform :ios do
         project_path = ENV['project_path']
         workspace_path = ENV['workspace_path']
         target_name = ENV['target_name']
-
-        # Print out the loaded environment variables
-        puts "----------------------------------------------"
-        puts "--- Step: Validating Appfile variables ---"
-        puts "----------------------------------------------"
-        puts "app_identifier: #{bundle_id}"
-        puts "team_id: #{team_id}"
-        puts "scheme: #{scheme}"
-        puts "configuration: #{configuration}"
-        puts "project_path: #{project_path}"
-        puts "workspace_path: #{workspace_path}"
-        puts "target_name: #{target_name}"
 
         disable_automatic_code_signing(
             path: project_path,
