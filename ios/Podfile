@@ -28,8 +28,4 @@ target 'RNdom' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   use_unimodules!
-
-  target 'RNdomTests' do
-    inherit! :search_paths
-  end
 end

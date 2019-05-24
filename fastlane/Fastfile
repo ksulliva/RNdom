@@ -63,6 +63,8 @@ platform :ios do
     desc "Build for Testflight"
     lane :build_for_testflight do |options|
 
+        setup_travis
+
         # Fetch project specific values
         bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
         apple_id = ENV['apple_id']
