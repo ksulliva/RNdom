@@ -20,30 +20,13 @@ platform :ios do
     desc "Create an .xcarchive"
     lane :archive_for_client do |options|
 
-        # Fetch project specific values
         bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-        apple_id = ENV['apple_id']
-        team_id = ENV['team_id']
-        app_name = ENV['app_name']
-        scheme = ENV['scheme']
-        configuration = ENV['configuration']
-        info_plist_path = ENV['info_plist_path']
-        project_path = ENV['project_path']
-        target_name = ENV['target_name']
-
-        # Print out the loaded environment variables
-        puts "----------------------------------------------"
-        puts "--- Step: Validating environment variables ---"
-        puts "----------------------------------------------"
-        puts "apple_id: #{apple_id}"
-        puts "app_identifier: #{bundle_id}"
-        puts "team_id: #{team_id}"
-        puts "app_name: #{app_name}"
-        puts "scheme: #{scheme}"
-        puts "configuration: #{configuration}"
-        puts "info_plist_path: #{info_plist_path}"
-        puts "project_path: #{project_path}"
-        puts "target_name: #{target_name}"
+        team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+        scheme = CredentialsManager::AppfileConfig.try_fetch_value(:scheme)
+        configuration = CredentialsManager::AppfileConfig.try_fetch_value(:configuration)
+        project_path = CredentialsManager::AppfileConfig.try_fetch_value(:project_path)
+        workspace_path = CredentialsManager::AppfileConfig.try_fetch_value(:workspace_path)
+        target_name = CredentialsManager::AppfileConfig.try_fetch_value(:target_name)
 
         disable_automatic_code_signing(
             path: project_path,
@@ -52,8 +35,8 @@ platform :ios do
         )
 
         xcarchive(
-            archive_path: "build/RNdom.xcarchive",
-            workspace: "ios/RNdom.xcworkspace",
+            archive_path: "build/#{target_name}.xcarchive",
+            workspace: workspace_path,
             scheme: scheme,
             xcargs: "CODE_SIGN_IDENTITY= CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO",
         )
@@ -65,30 +48,13 @@ platform :ios do
 
         setup_travis
 
-        # Fetch project specific values
         bundle_id = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
-        apple_id = ENV['apple_id']
-        team_id = ENV['team_id']
-        app_name = ENV['app_name']
-        scheme = ENV['scheme']
-        configuration = ENV['configuration']
-        info_plist_path = ENV['info_plist_path']
-        project_path = ENV['project_path']
-        target_name = ENV['target_name']
-
-        # Print out the loaded environment variables
-        puts "----------------------------------------------"
-        puts "--- Step: Validating environment variables ---"
-        puts "----------------------------------------------"
-        puts "apple_id: #{apple_id}"
-        puts "app_identifier: #{bundle_id}"
-        puts "team_id: #{team_id}"
-        puts "app_name: #{app_name}"
-        puts "scheme: #{scheme}"
-        puts "configuration: #{configuration}"
-        puts "info_plist_path: #{info_plist_path}"
-        puts "project_path: #{project_path}"
-        puts "target_name: #{target_name}"
+        team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+        scheme = CredentialsManager::AppfileConfig.try_fetch_value(:scheme)
+        configuration = CredentialsManager::AppfileConfig.try_fetch_value(:configuration)
+        project_path = CredentialsManager::AppfileConfig.try_fetch_value(:project_path)
+        workspace_path = CredentialsManager::AppfileConfig.try_fetch_value(:workspace_path)
+        target_name = CredentialsManager::AppfileConfig.try_fetch_value(:target_name)
 
         disable_automatic_code_signing(
             path: project_path,
@@ -100,20 +66,11 @@ platform :ios do
         match(
             readonly: true
         )
-
-        # match(
-        #     username: apple_id,
-        #     git_url: "https://github.com/ksulliva/RNdom-certificates",
-        #     team_id: team_id,
-        #     app_identifier: [bundle_id],
-        #     type: "development",
-        #     force_for_new_devices: true
-        # )
-
+        
         gym(
             scheme: scheme,
             configuration: configuration,
-            workspace: "ios/RNdom.xcworkspace",
+            workspace: workspace_path,
             clean: true,
             include_bitcode: false,
             include_symbols: true,

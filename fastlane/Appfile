@@ -1,27 +1,12 @@
-for_lane :archive_for_client do
-	# UPDATE THESE VALUES FOR YOUR PROJECT
+for_platform :ios do
 	app_identifier 			"com.ksulliva.petfinder-rn" # The bundle identifier of your app
-	ENV["apple_id"]			= "ksulliv6@gmail.com"
-	ENV["team_id"]			= "45688JGH49"
-	ENV["app_name"]			= "RNdom" # Used for the Apple Developer Account App ID registration
-	ENV["scheme"] 			= "RNdom" # The xcode scheme to build
-	ENV["configuration"] 	= "Release" # The project configuration to build, e.g. Release
-	ENV["info_plist_path"] 	= "ios/RNdom/Info.plist" # Path to the project's info.plist
-	ENV["project_path"] 	= "ios/RNdom.xcodeproj" # Path to the xcodeproj
-	ENV["target_name"]		= "RNdom" # The name of your xcode project's target
-end
-
-for_lane :build_for_testflight do
-	# UPDATE THESE VALUES FOR YOUR PROJECT
-	app_identifier 			"com.ksulliva.petfinder-rn" # The bundle identifier of your app
-	ENV["apple_id"]			= "ksulliv6@gmail.com"
-	ENV["team_id"]			= "45688JGH49"
-	ENV["app_name"]			= "RNdom" # Used for the Apple Developer Account App ID registration
-	ENV["scheme"] 			= "RNdom" # The xcode scheme to build
-	ENV["configuration"] 	= "Release" # The project configuration to build, e.g. Release
-	ENV["info_plist_path"] 	= "ios/RNdom/Info.plist" # Path to the project's info.plist
-	ENV["project_path"] 	= "ios/RNdom.xcodeproj" # Path to the xcodeproj
-	ENV["target_name"]		= "RNdom" # The name of your xcode project's target
+	team_id				 	"45688JGH49" # Team ID for Apple Developer Account
+	scheme		 		 	"RNdom" # The xcode scheme to build
+	configuration		  	"Release" # The project configuration to build, e.g. Release
+	info_plist_path		  	"ios/RNdom/Info.plist" # Path to the project's info.plist
+	project_path		  	"ios/RNdom.xcodeproj" # Path to the xcodeproj
+	workspace_path			"ios/RNdom.xcworkspace" # Path to the xcworkspace
+	target_name			 	"RNdom" # The name of your xcode project's target
 end
 
 # you can even provide different app identifiers, Apple IDs and team names per lane:
