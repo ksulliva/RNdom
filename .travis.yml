@@ -8,7 +8,7 @@ install:
   - bundle install
   - npm install
 script:
-  - fastlane build_for_testflight
+  - fastlane archive_for_client
 
 # before_deploy:
 #   - zip -r RNdom.xcarchive.zip build/
